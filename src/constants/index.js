@@ -1,0 +1,4 @@
+export default {
+  FETCHED_TICKER: 'FETCHED_TICKER',
+  ERROR_MESSAGE: 'ERROR_MESSAGE',
+};
