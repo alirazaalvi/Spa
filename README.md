@@ -53,16 +53,16 @@ Project Structure
 
 | Name                               | Description                                                  |
 | ---------------------------------- | ------------------------------------------------------------ |
-| **src/componnents**/*             | Contains all of the views.              |
+| **src/components**/*             | Contains all of the views.              |
 | **src/actions**/*             | Contains all of the actions.              |
 | **src/reducers**/*             | The data units have been stored into reducers.              |
 | **src/stores**/*             | Combined reducers and store methods.              |
-| **helpers**/*        | All utility methods will be reside into this folder                                |
+| **helpers**/*        | Utility methods.             |
 | .eslintrc                          | Rules for eslint linter.                                     |
 | .gitignore                         | Folder and files ignored by git.                             |
-| .travis.yml                        | Configuration files for continue integration.                |
-| app.js                             | The main componennt.                                   |
+| .travis.yml                        | Configuration files for continuous integration.                |
+| app.js                             | The main component.                                   |
 | index.js                             | Entry point of the application.                                   |
 | package.json                       | NPM dependencies.                                            |
-| package-lock.json                  | Contains exact versions of NPM dependencies in package.json. |
+| package-lock.json                  | Locked versions of NPM dependencies. |
 
