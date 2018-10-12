@@ -1,32 +1,24 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import ReactEcharts from 'echarts-for-react';
 import PropTypes from 'prop-types';
 import { arrangeChartData, getChartOptions } from '../../helpers';
 
-class Ticker extends PureComponent {
-  render() {
-    const { markets } = this.props;
-    const marketData = arrangeChartData(markets);
-    const onEvents = {
-      click: this.onChartClick,
-      legendselectchanged: this.onChartLegendselectchanged,
-    };
+const Ticker = (props) => {
+  const { markets } = props;
+  const marketData = arrangeChartData(markets);
 
-    const hasData = markets && markets.length > 0;
+  const hasData = markets && markets.length > 0;
 
-    return (
-      <div className="chart">
-        {hasData && (
-        <ReactEcharts
-          option={getChartOptions(marketData)}
-          style={{ height: 500 }}
-          onChartReady={this.onChartReady}
-          onEvents={onEvents}
-        />)}
-      </div>
-    );
-  }
-}
+  return (
+    <div className="chart">
+      {hasData && (
+      <ReactEcharts
+        option={getChartOptions(marketData)}
+        style={{ height: 500 }}
+      />)}
+    </div>
+  );
+};
 
 Ticker.propTypes = {
   markets: PropTypes.arrayOf(PropTypes.shape({})),

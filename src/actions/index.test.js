@@ -76,6 +76,6 @@ describe('Ticker', () => {
       type: Constants.REFRESHING,
       data: true,
     };
-    expect(toggleRefresh(true)).toEqual(expectedAction)
+    expect(toggleRefresh(true)).toEqual(expectedAction);
   });
 });

@@ -11,8 +11,6 @@ describe('Helpers', () => {
     expect(marketData.legends.length).toBeGreaterThan(1);
   });
 
-
-
   it('getChartOptions', async () => {
     expect(getChartOptions(testData.ticker.markets)).toBeDefined();
   });
