@@ -1,7 +1,7 @@
 import Space from 'spaceace';
 import Constants from '../constants';
 
-export const data = new Space({ markets: [], refreshing: false });
+export const data = new Space({ markets: [], refreshing: false, errorMessage: '' });
 
 export default (state = data, action) => {
   const type = action && action.type ? action.type : '';
@@ -13,6 +13,10 @@ export default (state = data, action) => {
     case Constants.REFRESHING:
     {
       return data({ refreshing: action.data });
+    }
+    case Constants.ERROR_MESSAGE:
+    {
+      return data({ errorMessage: action.data });
     }
     default:
     {

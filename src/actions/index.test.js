@@ -2,7 +2,7 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import moxios from 'moxios';
-import { fetchTicker, toggleRefresh } from '.';
+import { fetchTicker, toggleRefresh, toggleErrorMessage } from '.';
 import Constants from '../constants';
 
 // test/utils/getAction.js
@@ -77,5 +77,13 @@ describe('Ticker', () => {
       data: true,
     };
     expect(toggleRefresh(true)).toEqual(expectedAction);
+  });
+
+  it('should create an action to trigger error message', () => {
+    const expectedAction = {
+      type: Constants.ERROR_MESSAGE,
+      data: '',
+    };
+    expect(toggleErrorMessage('')).toEqual(expectedAction);
   });
 });

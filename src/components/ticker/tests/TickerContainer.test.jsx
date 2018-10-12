@@ -13,7 +13,7 @@ describe('Ticker', () => {
   const component = shallow(<TickerContainer />);
 
   it('render container', () => {
-    expect(connectedComponent.find('.page_header').length).toBe(1);
+    expect(connectedComponent.find('.page-header').length).toBe(1);
   });
 
   it('executed api call', () => {

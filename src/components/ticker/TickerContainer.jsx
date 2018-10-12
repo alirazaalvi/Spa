@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Ticker from './Ticker';
+import Message from '../common/Message';
 import { fetchTicker } from '../../actions';
 
 export class TickerContainer extends Component {
@@ -23,10 +24,10 @@ export class TickerContainer extends Component {
   }
 
   render() {
-    const { markets, refreshing } = this.props;
+    const { markets, refreshing, errorMessage } = this.props;
     return (
       <div>
-        <div className="page_header">
+        <div className="page-header">
           <h1>Market Data</h1>
           <input
             className="button-primary"
@@ -34,6 +35,7 @@ export class TickerContainer extends Component {
             value={refreshing ? 'Loading' : 'Refresh'}
             onClick={this.doApiCall}
           />
+          <Message message={errorMessage} />
         </div>
         <Ticker markets={markets} />
       </div>);
@@ -44,19 +46,22 @@ TickerContainer.propTypes = {
   markets: PropTypes.arrayOf(PropTypes.shape({})),
   refreshing: PropTypes.bool,
   dispatch: PropTypes.func,
+  errorMessage: PropTypes.string,
 };
 
 TickerContainer.defaultProps = {
   markets: [],
   refreshing: false,
+  errorMessage: '',
   dispatch: () => {},
 };
 
 function mapStateToProps(state) {
-  const { markets } = state.MainReducer;
+  const { markets, refreshing, errorMessage } = state.MainReducer;
   return {
     markets: markets.toJSON(),
-    refreshing: state.MainReducer.refreshing,
+    refreshing,
+    errorMessage,
   };
 }
 

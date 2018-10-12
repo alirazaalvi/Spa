@@ -10,6 +10,14 @@ export function toggleRefresh(refreshStatus) {
   };
 }
 
+export function toggleErrorMessage(errorMessage) {
+  return {
+    type: Constants.ERROR_MESSAGE,
+    data: errorMessage,
+  };
+}
+
+
 // Thunk action to fetch the list of hotels
 export function fetchTicker() {
   return (dispatch) => {
@@ -23,14 +31,12 @@ export function fetchTicker() {
           type: Constants.FETCHED_TICKER,
           data: response.data,
         });
+
+        dispatch(toggleErrorMessage(''));
       })
-      .catch((error) => {
+      .catch(() => {
         dispatch(toggleRefresh(false));
-        // Placeholder action for error handling
-        dispatch({
-          type: Constants.ERROR_MESSAGE,
-          data: error,
-        });
+        dispatch(toggleErrorMessage('Oops! Something went wrong!. Please try again.'));
       });
   };
 }

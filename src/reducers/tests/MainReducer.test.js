@@ -15,4 +15,13 @@ describe('reducers', () => {
 
     expect(nextState.markets.length).toBeGreaterThan(1);
   });
+
+  it('should set the error message', () => {
+    const nextState = reducer(data, {
+      type: Constants.ERROR_MESSAGE,
+      data: 'ERROR',
+    });
+
+    expect(nextState.errorMessage).toEqual('ERROR');
+  });
 });
