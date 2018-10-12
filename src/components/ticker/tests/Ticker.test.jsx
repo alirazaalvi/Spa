@@ -6,8 +6,8 @@ import testData from '../../../data/testData';
 
 enzyme.configure({ adapter: new Adapter() });
 
-describe('Hotel', () => {
-  it('render list item', () => {
+describe('Ticker', () => {
+  it('renders chart', () => {
     const componentBody = (<Ticker values={testData.markets} />);
     const component = mount(componentBody);
     expect(component.find('.chart').length).toBe(1);

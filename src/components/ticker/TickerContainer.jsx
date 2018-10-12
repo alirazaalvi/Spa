@@ -23,7 +23,7 @@ export class TickerContainer extends Component {
   }
 
   render() {
-    const { markets } = this.props;
+    const { markets, refreshing } = this.props;
     return (
       <div>
         <div className="page_header">
@@ -31,7 +31,7 @@ export class TickerContainer extends Component {
           <input
             className="button-primary"
             type="button"
-            value="Refresh"
+            value={refreshing ? 'Loading' : 'Refresh'}
             onClick={this.doApiCall}
           />
         </div>
@@ -42,11 +42,13 @@ export class TickerContainer extends Component {
 
 TickerContainer.propTypes = {
   markets: PropTypes.arrayOf(PropTypes.shape({})),
+  refreshing: PropTypes.bool,
   dispatch: PropTypes.func,
 };
 
 TickerContainer.defaultProps = {
   markets: [],
+  refreshing: false,
   dispatch: () => {},
 };
 
@@ -54,6 +56,7 @@ function mapStateToProps(state) {
   const { markets } = state.MainReducer;
   return {
     markets: markets.toJSON(),
+    refreshing: state.MainReducer.refreshing,
   };
 }
 
