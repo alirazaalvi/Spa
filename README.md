@@ -38,6 +38,9 @@ npm start
 # Access the application
 http://localhost:3000
 
+# Optional with docker
+ docker-compose up --build
+
 # Test
 npm test
 
