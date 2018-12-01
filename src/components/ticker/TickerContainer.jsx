@@ -59,7 +59,7 @@ TickerContainer.defaultProps = {
 function mapStateToProps(state) {
   const { markets, refreshing, errorMessage } = state.MainReducer;
   return {
-    markets: markets.toJSON(),
+    markets,
     refreshing,
     errorMessage,
   };

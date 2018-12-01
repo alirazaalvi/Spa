@@ -1,26 +1,32 @@
-import Space from 'spaceace';
+import produce from 'immer';
 import Constants from '../constants';
 
-export const data = new Space({ markets: [], refreshing: false, errorMessage: '' });
-
-export default (state = data, action) => {
-  const type = action && action.type ? action.type : '';
-  switch (type) {
-    case Constants.FETCHED_TICKER:
-    {
-      return data({ markets: action.data.ticker.markets });
+export const defaultState = { markets: [], refreshing: false, errorMessage: '' };
+const reducer = (
+  state = defaultState,
+  action,
+) => produce(state, (draft) => {
+  let currentDraft = draft;
+  const actionType = action && action.type ? action.type : '';
+  switch (actionType) {
+    case Constants.FETCHED_TICKER: {
+      currentDraft.markets = action.data.ticker.markets;
+      return;
     }
     case Constants.REFRESHING:
     {
-      return data({ refreshing: action.data });
+      currentDraft.refreshing = action.data;
+      return;
     }
     case Constants.ERROR_MESSAGE:
     {
-      return data({ errorMessage: action.data });
+      currentDraft.errorMessage = action.data;
+      return;
     }
-    default:
-    {
-      return state;
+    default: {
+      currentDraft = draft;
     }
   }
-};
+});
+
+export default reducer;
